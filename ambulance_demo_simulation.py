@@ -65,7 +65,8 @@ while not done:
   your_total_reward += reward
 
   # by comparing the final state with the action the user chose, we can figure out where the most recent arrival was
-  previous_arrival = state[np.argmax(np.abs(action - state))]
+  previous_arrival_ind = np.argmax(np.abs(action - state))
+  previous_arrival = state[previous_arrival_ind]
 
   # the heuristic agent always chooses to put all the ambulances at the median estimate
   heuristic_agent_action = np.full(num_ambulance, median_est)
@@ -90,7 +91,7 @@ while not done:
   plot_rewards()
   time.sleep(2)
 
-  print("\nThe most recent call arrival was at", previous_arrival, "\n")
+  print("\nThe most recent call arrival was at " + str(previous_arrival) + ", and ambulance " + str(previous_arrival_ind+1) + " responded to the call.\n")
 
   time.sleep(2)
 
